@@ -22,6 +22,12 @@ trait ExceptionTrait
             ], Response::HTTP_NOT_FOUND);
         }
 
+        if ($exception instanceof ProductNotBelongsToUser) {
+            return response()->json([
+                'errors' => 'Product Not Belongs To User'
+            ], Response::HTTP_UNAUTHORIZED);
+        }
+
         return parent::render($request, $exception);
     }
 }
