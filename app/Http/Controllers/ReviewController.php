@@ -6,6 +6,7 @@ use App\Http\Requests\ReviewRequest;
 use App\Http\Resources\ReviewResource;
 use App\Model\Product;
 use App\Model\Review;
+use App\Notifications\NewProductReviewNotification;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -43,7 +44,7 @@ class ReviewController extends Controller
 
         $product->reviews()->save($review);
 
-        Review::notifyProductOwner($product, $review);
+        $product->user->notify(new NewProductReviewNotification($product, $review));
 
         return response([
             'data' => new ReviewResource($review)

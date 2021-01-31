@@ -2,7 +2,6 @@
 
 namespace App\Model;
 
-use App\Notifications\NewReview;
 use Illuminate\Database\Eloquent\Model;
 
 class Review extends Model
@@ -12,11 +11,6 @@ class Review extends Model
     public function product()
     {
         return $this->belongsTo(Product::class);
-    }
-
-    public static function notifyProductOwner($product, $review)
-    {
-        $product->user->notify(new NewReview($product, $review));
     }
 
 }
