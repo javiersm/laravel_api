@@ -43,6 +43,8 @@ class ReviewController extends Controller
 
         $product->reviews()->save($review);
 
+        Review::notifyProductOwner($product, $review);
+
         return response([
             'data' => new ReviewResource($review)
         ], Response::HTTP_CREATED);
