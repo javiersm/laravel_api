@@ -72,7 +72,8 @@ class ProductController extends Controller
      */
     public function show(Product $product, MovieDB $movieDB)
     {
-        //dump('movie_search', $movieDB->search('jose'));
+        $movies = $movieDB->search('disney');
+        dump($movies);
 
         return new ProductResource($product);
     }

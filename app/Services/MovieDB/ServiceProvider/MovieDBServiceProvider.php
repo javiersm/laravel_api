@@ -15,7 +15,7 @@ class MovieDBServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton(MovieDB::class, function($app){
-            return new MovieDB();
+            return new MovieDB(config('services.moviedb.key'));
         });
     }
 
