@@ -7,6 +7,7 @@ use App\Http\Requests\ProductRequest;
 use App\Http\Resources\Product\ProductCollection;
 use App\Http\Resources\Product\ProductResource;
 use App\Model\Product;
+use App\Services\MovieDB\MovieDB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
@@ -69,8 +70,10 @@ class ProductController extends Controller
      * @param \App\Model\Product $product
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show(Product $product, MovieDB $movieDB)
     {
+        //dump('movie_search', $movieDB->search('jose'));
+
         return new ProductResource($product);
     }
 
