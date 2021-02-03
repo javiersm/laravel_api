@@ -22,7 +22,7 @@ class MovieDB implements MovieDBInterface
                         'verify' => 'C:\wamp64\bin\php\php7.2.18\cacert.pem'
                     ])
                     ->get($this->url.'search/movie?api_key='.$this->api_key.'&language=es-ES&query='.$query)
-                    ->body();
+                    ->json();
     }
 
 
