@@ -2,7 +2,7 @@
 
 namespace App\Services\MovieDB\Interfaces;
 
-Interface MovieDBInterface
+Interface MovieSearchableInterface
 {
 
     public function search( $query );

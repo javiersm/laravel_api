@@ -2,27 +2,34 @@
 
 namespace App\Services\MovieDB;
 
-use App\Services\MovieDB\Interfaces\MovieDBInterface;
-use Illuminate\Support\Facades\Http;
 
-class MovieDB implements MovieDBInterface
+class MovieDB extends MovieDBConector
 {
-    private $api_key;
-    private $url;
 
-    public function __construct( $key )
+    public function __construct($key)
     {
-        $this->api_key = $key;
-        $this->url = 'https://api.themoviedb.org/3/';
+        parent::__construct($key);
     }
 
-    public function search( $query )
+
+    public function search($query)
     {
-        return Http::withOptions([
-                        'verify' => 'C:\wamp64\bin\php\php7.2.18\cacert.pem'
-                    ])
-                    ->get($this->url.'search/movie?api_key='.$this->api_key.'&language=es-ES&query='.$query)
-                    ->json();
+        return parent::search($query);
+    }
+
+
+    public function getImage($query)
+    {
+        $movie = parent::search($query);
+
+        // search movie image and return it
+        return $movie->image();
+    }
+
+
+    public function getByAuthor($query)
+    {
+
     }
 
 
